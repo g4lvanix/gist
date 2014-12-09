@@ -16,14 +16,14 @@ deltaPhi = 360/nSamplesPeriod
 
 f = open(fname, "w")
 
-f.write("int16_t sineLUT_" + str(freq) + "HZ[" + str(nSamplesPeriod) + "] = {\n\t")
+f.write("int16_t cosLUT_" + str(freq) + "HZ[" + str(nSamplesPeriod) + "] = {\n\t")
 
 for i in range(nSamplesPeriod):
 	
 	if i > 0 and (i % 10 == 0):
 		f.write("\n\t")
 	
-	sine = (steps/2)*math.sin(math.radians(i*deltaPhi))
+	sine = (steps/2)*math.cos(math.radians( (math.pi/2) + (i*deltaPhi)))
 	
 	f.write(str(int(sine)) + ", ")
 
