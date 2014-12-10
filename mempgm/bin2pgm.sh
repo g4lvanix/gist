@@ -32,7 +32,6 @@ usage()
 
 if [ $# -eq 1 -a "$1" == "--help" ]; then
 	usage
-	exit
 fi
 
 convert $1 $2 $3
