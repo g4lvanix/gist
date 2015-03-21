@@ -1,0 +1,26 @@
+# ignore all build related files
+*.eep
+*.elf
+*.hex
+*.lss
+*.lst
+*.map
+*.o
+*.sym
+.dep
+
+# ignore Gerber prodcution outputs
+*.gbl
+*.gbo
+*.gbs
+*.gko
+*.gtl
+*.gto
+*.gts
+*.xln
+
+# ignore BOM and other files
+*.csv
+*.ods
+*.zip
+*.xml
