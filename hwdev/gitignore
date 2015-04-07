@@ -18,6 +18,8 @@
 *.gto
 *.gts
 *.xln
+*.drl
+gerbers/
 
 # ignore BOM and other files
 *.csv
