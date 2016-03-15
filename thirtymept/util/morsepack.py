@@ -25,12 +25,12 @@ def morse2bin(code,delay,mode):
 		if c == "-":
 			if mode == "fskcw":
 				binstring += "1110"
-			elif mode == "dfcw":
+			elif (mode == "dfcw") or (mode == "castle"):
 				binstring += "1"
 		elif c == ".":
 			if mode == "fskcw":
 				binstring += "10"
-			elif mode == "dfcw":
+			elif (mode == "dfcw") or (mode == "castle"):
 				binstring += "0"
 		else:
 			if mode == "fskcw":
@@ -62,7 +62,8 @@ if __name__ == "__main__":
 
 	print("Available keying modes: ")
 	print("(1) FSK-CW")
-	print("(2) DFCW\n")
+	print("(2) DFCW")
+	print("(3) CASTLE\n")
 	keymode = int(input("Choose keying mode: "))
 	callsign = input("Enter callsign: ").upper()
 	unitdelay = int(input("Delay after call (units): "))
@@ -76,6 +77,8 @@ if __name__ == "__main__":
 		b = morse2bin(m,unitdelay,"fskcw")
 	elif (keymode == 2):
 		b = morse2bin(m,unitdelay,"dfcw")
+	elif (keymode == 3):
+		b = morse2bin(m,unitdelay,"castle")
 	else:
 		print("Invalid keying mode specified")
 
