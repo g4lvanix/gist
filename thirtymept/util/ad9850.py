@@ -81,6 +81,38 @@ def getWSPRconf():
 
 	print("};")
 
+def calcCASTLE(baseFreq,dotPeriod):
+	freqWords = []
+
+	deltaF = 8/dotPeriod
+
+	# calc dit words
+	for n in range(1,6,1):
+		f = baseFreq - n*deltaF
+		freqWords.append(calcTuneWord(f))
+
+	# calc dah words
+	for n in range(1,6,1):
+		f = baseFreq + n*deltaF
+		freqWords.append(calcTuneWord(f))
+
+	return freqWords
+
+def getCASTLEconf():
+	baseFreq = int(input("Enter center frequency in Hz: "))
+	dotPeriod = int(input("Enter dot period in seconds: "))
+
+	words = calcCASTLE(baseFreq,dotPeriod)
+
+	print("// CASTLE",dotPeriod," 10-FSK tones for "+str(baseFreq)+" Hz")
+	print("// Word order: first 5 are dit freqs, last 5 are dah freqs")
+
+	print("const uint8_t castleTones[10][5] = {")
+
+	for s in words:
+		print("\t"+formatOutput(s)+",")
+
+	print("};")
 
 if __name__ == "__main__":
 	print("g4lvanix MEPT configurator\n")
@@ -91,15 +123,18 @@ if __name__ == "__main__":
 		print("Options:")
 		print("(1) Calculate QRSS tuning words")
 		print("(2) Calculate WSPR tuning words")
+		print("(3) Calculate CASTLE tuning words")
 
 		choice = int(input("Select option: "))
 
 		print(" ")
 
-		if (choice == 1) or (choice == 2):
+		if (choice == 1) or (choice == 2) or (choice == 3):
 			incorrect = 0
 
 	if choice == 1:
 		getQRSSconf()
-	else:
+	elif choice == 2:
 		getWSPRconf()
+	else:
+		getCASTLEconf()
